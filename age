@@ -1,0 +1,25 @@
+import java.time.LocalDate;
+import java.time.Period;
+
+public class AgeCalculator {
+    public static void main(String[] args) {
+        LocalDate dob1 = LocalDate.of(1996, 1, 1); 
+        LocalDate dob2 = LocalDate.of(2000, 1, 1); 
+        LocalDate currentDate = LocalDate.of(2024, 3, 13); 
+
+        int ageDifference = 3; 
+
+       
+        LocalDate olderBrotherAt5 = dob1.plusYears(5);
+        int ageOfOlderBrotherAt5 = Period.between(olderBrotherAt5, currentDate).getYears();
+
+       
+        int ageOfYoungerBrotherWhenOlderBrotherWas5 = dob2.until(olderBrotherAt5).getYears();
+
+       
+        int ageOfPersonWhenOlderBrotherIs56 = dob1.until(currentDate.plusYears(56 - ageOfOlderBrotherAt5)).getYears();
+
+        System.out.println("The person is " + ageOfPersonWhenOlderBrotherIs56 + " years old when his older brother is 56.");
+        System.out.println("The younger brother was " + ageOfYoungerBrotherWhenOlderBrotherWas5 + " years old when the older brother was 5.");
+    }
+}
