@@ -1,0 +1,20 @@
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
+public class BirthYearCalculator {
+    public static void main(String[] args) {
+        int currentYear = 2073;
+        int eligibilityAge = 21;
+
+      
+        int birthYear = currentYear - eligibilityAge;
+
+        if (birthYear > 2060) {
+            
+            int medianYear = (birthYear + 2023) / 2;
+            System.out.println("The person's birth year is " + medianYear);
+        } else {
+            System.out.println("The person's birth year is " + birthYear);
+        }
+    }
+}
