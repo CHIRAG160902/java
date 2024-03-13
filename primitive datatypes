@@ -1,0 +1,33 @@
+public class DataTypeConversionDemo {
+    public static void main(String[] args) {
+       
+        int intValue = 100;
+        long longValue = intValue; 
+        
+        float floatValue = 3.14f;
+        double doubleValue = floatValue; 
+        
+       
+         int smallerValue = 100;
+        
+       
+        long largerValue = smallerValue; 
+        
+       
+        System.out.println("Smaller value (int): " + smallerValue);
+        System.out.println("Converted value (long): " + largerValue);
+        
+        long largeLongValue = 987654321;
+        int smallIntValue = (int) largeLongValue; 
+         System.out.println("Larger value (long): " + largerValue);
+        System.out.println("Converted value (int): " + smallerValue);
+       
+        int overflowIntValue = Integer.MAX_VALUE;
+        overflowIntValue++; 
+        System.out.println("Overflow Int Value: " + overflowIntValue);
+        
+        int underflowIntValue = Integer.MIN_VALUE;
+        underflowIntValue--; 
+        System.out.println("Underflow Int Value: " + underflowIntValue);
+    }
+}
