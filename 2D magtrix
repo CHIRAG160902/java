@@ -1,0 +1,15 @@
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        int[][] matrix = new int[3][3];
+        Arrays.fill(matrix[0], 1);
+        Arrays.fill(matrix[1], 2);
+        Arrays.fill(matrix[2], 3);
+        
+        System.out.println("Matrix:");
+        for (int[] row : matrix) {
+            System.out.println(Arrays.toString(row));
+        }
+    }
+}
