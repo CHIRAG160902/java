@@ -1,0 +1,35 @@
+public class ShiftValues {
+    public static void main(String[] args) {
+        int[] A = {5, 3, 8, 7}; // Example array A
+        int[] B = {3, 2, 6, 4}; // Example array B
+
+        System.out.println("Array A: ");
+        printArray(A);
+        System.out.println("Array B: ");
+        printArray(B);
+
+        for (int i = 0; i < A.length; i++) {
+            if (A[i] > B[i]) {
+                A[i] >>= 1; // Shift A[i] right by 1 bit
+                B[i] <<= 1; // Shift B[i] left by 1 bit
+            } else {
+                A[i] <<= 1; // Shift A[i] left by 1 bit
+                B[i] >>= 1; 
+            }
+        }
+
+        System.out.println("After shifting:");
+        System.out.println("Array A: ");
+        printArray(A);
+        System.out.println("Array B: ");
+        printArray(B);
+    }
+
+
+    public static void printArray(int[] arr) {
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+}
