@@ -1,0 +1,54 @@
+public class LoopComparison {
+    public static void main(String[] args) {
+        int maxNumber = 100000000;
+        long startTime, endTime;
+
+      
+        startTime = System.nanoTime();
+        int sum1 = 0;
+        for (int i = 1; i <= maxNumber; i++) {
+            sum1 += i;
+        }
+        endTime = System.nanoTime();
+        long durationFor = endTime - startTime;
+
+       
+        startTime = System.nanoTime();
+        int sum2 = 0;
+        int j = 1;
+        while (j <= maxNumber) {
+            sum2 += j;
+            j++;
+        }
+        endTime = System.nanoTime();
+        long durationWhile = endTime - startTime;
+
+        startTime = System.nanoTime();
+        int sum3 = 0;
+        int k = 1;
+        do {
+            sum3 += k;
+            k++;
+        } while (k <= maxNumber);
+        endTime = System.nanoTime();
+        long durationDoWhile = endTime - startTime;
+
+      
+        System.out.println("Sum (For loop): " + sum1);
+        System.out.println("Execution time (For loop): " + durationFor + " nanoseconds");
+
+        System.out.println("Sum (While loop): " + sum2);
+        System.out.println("Execution time (While loop): " + durationWhile + " nanoseconds");
+
+        System.out.println("Sum (Do-while loop): " + sum3);
+        System.out.println("Execution time (Do-while loop): " + durationDoWhile + " nanoseconds");
+
+        if (durationFor < durationWhile && durationFor < durationDoWhile) {
+            System.out.println("For loop executed the fastest.");
+        } else if (durationWhile < durationFor && durationWhile < durationDoWhile) {
+            System.out.println("While loop executed the fastest.");
+        } else {
+            System.out.println("Do-while loop executed the fastest.");
+        }
+    }
+}
