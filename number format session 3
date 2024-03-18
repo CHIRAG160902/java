@@ -1,0 +1,46 @@
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Scanner;
+
+public class NumberFormatExceptions {
+    public static void main(String[] args) {
+        // a) Parsing a Non-Numeric String
+        try {
+            String nonNumericString = "abc";
+            int numericValue = Integer.parseInt(nonNumericString); // Attempting to parse a non-numeric string
+            System.out.println("Parsed value: " + numericValue); // This line will not be executed
+        } catch (NumberFormatException e) {
+            System.out.println("Caught NumberFormatException: Parsing a Non-Numeric String");
+        }
+
+        // b) Reading User Input Without Validation
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        try {
+            int userInput = Integer.parseInt(scanner.nextLine()); // Attempting to parse user input
+            System.out.println("User input: " + userInput);
+        } catch (NumberFormatException e) {
+            System.out.println("Caught NumberFormatException: Reading User Input Without Validation");
+        }
+
+        // c) Formatting Issues in “Decimal Format”
+        try {
+            DecimalFormat df = new DecimalFormat("#,###");
+            String formattedValue = df.format("1234567"); // Attempting to format a non-numeric string
+            System.out.println("Formatted value: " + formattedValue); // This line will not be executed
+        } catch (NumberFormatException e) {
+            System.out.println("Caught NumberFormatException: Formatting Issues in \"Decimal Format\"");
+        }
+
+       
+        try {
+            String numberString = "1.234.567";
+            NumberFormat nf = NumberFormat.getInstance(); 
+            Number number = nf.parse(numberString);  
+            System.out.println("Parsed number: " + number); 
+        } catch (ParseException | NumberFormatException e) {
+            System.out.println("Caught NumberFormatException: Incorrectly using localized decimal separators");
+        }
+    }
+}
