@@ -1,0 +1,25 @@
+public class PerfectNumbers {
+    public static void main(String[] args) {
+        int n = 5; // Number of perfect numbers to print
+        int count = 0; // Counter for perfect numbers found
+        int number = 1; // Starting from 1
+
+        while (count < n) {
+            if (isPerfectNumber(number)) {
+                System.out.println(number);
+                count++;
+            }
+            number++;
+        }
+    }
+
+    public static boolean isPerfectNumber(int num) {
+        int sum = 0;
+        for (int i = 1; i <= num / 2; i++) {
+            if (num % i == 0) {
+                sum += i;
+            }
+        }
+        return sum == num;
+    }
+}
