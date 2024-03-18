@@ -1,0 +1,35 @@
+public class ArithmeticExceptions {
+    public static void main(String[] args) {
+        // a) Divided by Zero
+        try {
+            int result = 10 / 0; // Attempting to divide by zero
+            System.out.println("Result: " + result); // This line will not be executed
+        } catch (ArithmeticException e) {
+            System.out.println("Caught ArithmeticException: Division by zero");
+        }
+
+        // b) Logarithm of negative or Zero
+        try {
+            double result = Math.log(0); // Attempting to take logarithm of zero
+            System.out.println("Result: " + result); // This line will not be executed
+        } catch (ArithmeticException e) {
+            System.out.println("Caught ArithmeticException: Logarithm of zero or negative number");
+        }
+
+        // c) Tan 90 Degree
+        try {
+            double result = Math.tan(Math.toRadians(90)); // Attempting to calculate tan(90)
+            System.out.println("Result: " + result); // This line will not be executed
+        } catch (ArithmeticException e) {
+            System.out.println("Caught ArithmeticException: Tan 90 degree");
+        }
+
+        // d) Zero power Zero
+        try {
+            double result = Math.pow(0, 0); // Attempting to calculate 0^0
+            System.out.println("Result: " + result); // This line will not be executed
+        } catch (ArithmeticException e) {
+            System.out.println("Caught ArithmeticException: Zero power zero");
+        }
+    }
+}
