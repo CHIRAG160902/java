@@ -1,0 +1,110 @@
+class MatrixGeneratorThread extends Thread {
+    private int[][] matrix;
+    private String name;
+
+    public MatrixGeneratorThread(String name) {
+        this.name = name;
+    }
+
+    public int[][] getMatrix() {
+        return matrix;
+    }
+
+    @Override
+    public void run() {
+        System.out.println("Thread " + name + " started.");
+        // Generating a 3x3 matrix
+        matrix = new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        System.out.println("Thread " + name + " generated matrix:");
+        printMatrix(matrix);
+        System.out.println("Thread " + name + " completed.");
+    }
+
+    private void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int num : row) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+class ElementCounterThread extends Thread {
+    private MatrixGeneratorThread thread1;
+    private MatrixGeneratorThread thread2;
+
+    public ElementCounterThread(MatrixGeneratorThread thread1, MatrixGeneratorThread thread2) {
+        this.thread1 = thread1;
+        this.thread2 = thread2;
+    }
+
+    @Override
+    public void run() {
+        System.out.println("Thread 4 started counting elements.");
+        int totalElements = countElements(thread1.getMatrix()) + countElements(thread2.getMatrix());
+        System.out.println("Total elements in matrices: " + totalElements);
+        System.out.println("Thread 4 completed counting elements.");
+    }
+
+    private int countElements(int[][] matrix) {
+        int count = 0;
+        for (int[] row : matrix) {
+            count += row.length;
+        }
+        return count;
+    }
+}
+
+class MatrixAdditionThread extends Thread {
+    private MatrixGeneratorThread thread1;
+    private MatrixGeneratorThread thread2;
+
+    public MatrixAdditionThread(MatrixGeneratorThread thread1, MatrixGeneratorThread thread2) {
+        this.thread1 = thread1;
+        this.thread2 = thread2;
+    }
+
+    @Override
+    public void run() {
+        try {
+            System.out.println("Thread 3 waiting for Thread 4 to finish counting elements.");
+            Thread.sleep(2000); // Simulating wait time for Thread 4 to complete counting
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Thread 3 acquired matrices from Thread 1 and Thread 2.");
+        int[][] matrix1 = thread1.getMatrix();
+        int[][] matrix2 = thread2.getMatrix();
+        System.out.println("Matrix addition result:");
+        performMatrixAddition(matrix1, matrix2);
+    }
+
+    private void performMatrixAddition(int[][] matrix1, int[][] matrix2) {
+        for (int i = 0; i < matrix1.length; i++) {
+            for (int j = 0; j < matrix1[0].length; j++) {
+                System.out.print((matrix1[i][j] + matrix2[i][j]) + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+public class MatrixThreadsExample {
+    public static void main(String[] args) {
+        MatrixGeneratorThread thread1 = new MatrixGeneratorThread("1");
+        MatrixGeneratorThread thread2 = new MatrixGeneratorThread("2");
+        ElementCounterThread thread4 = new ElementCounterThread(thread1, thread2);
+        MatrixAdditionThread thread3 = new MatrixAdditionThread(thread1, thread2);
+
+        thread1.start();
+        thread2.start();
+        thread4.start();
+        try {
+            thread4.join(); // Wait for Thread 4 to complete counting
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        thread3.start();
+    }
+}
