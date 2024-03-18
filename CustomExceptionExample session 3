@@ -1,0 +1,22 @@
+class InvalidDecimalException extends Exception {
+    public InvalidDecimalException(String message) {
+        super(message);
+    }
+}
+
+public class CustomExceptionExample {
+    public static void main(String[] args) {
+        try {
+            String userInput = "abc"; // Assume the user input is "abc"
+            double number = Double.parseDouble(userInput);
+            if (Double.isNaN(number) || Double.isInfinite(number)) {
+                throw new InvalidDecimalException("Invalid decimal number: " + userInput);
+            }
+            System.out.println("Parsed number: " + number);
+        } catch (NumberFormatException e) {
+            System.out.println("Caught NumberFormatException: Invalid format for decimal number");
+        } catch (InvalidDecimalException e) {
+            System.out.println("Caught InvalidDecimalException: " + e.getMessage());
+        }
+    }
+}
