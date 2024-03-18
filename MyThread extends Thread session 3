@@ -1,0 +1,45 @@
+class MyThread extends Thread {
+    private long sleepTime;
+
+    public MyThread(long sleepTime) {
+        this.sleepTime = sleepTime;
+    }
+
+    @Override
+    public void run() {
+        long startTime = System.currentTimeMillis();
+        try {
+            Thread.sleep(sleepTime); // Simulate thread sleeping
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
+        System.out.println("Thread " + Thread.currentThread().getName() + " slept for " + elapsedTime + " milliseconds.");
+    }
+}
+
+public class ThreadTimeComparison {
+    public static void main(String[] args) {
+        MyThread thread1 = new MyThread(2000); // Sleep for 2 seconds
+        MyThread thread2 = new MyThread(3000); // Sleep for 3 seconds
+
+        long startTime = System.currentTimeMillis();
+
+        thread1.start();
+        thread2.start();
+
+        try {
+            thread1.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
+
+        System.out.println("Total execution time: " + elapsedTime + " milliseconds.");
+        System.out.println("Thread " + (thread1.isAlive() ? "1" : "2") + " had a longer sleeping time.");
+    }
+}
