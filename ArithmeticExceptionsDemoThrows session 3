@@ -1,0 +1,50 @@
+// Class level throws declaration
+class ArithmeticExceptionsDemoThrows {
+
+    // Method level throws declaration
+    static void divideByZero() throws ArithmeticException {
+        int result = 10 / 0; // Attempting to divide by zero
+        System.out.println("Result: " + result);
+    }
+
+    static void calculateLogarithm() throws ArithmeticException {
+        double result = Math.log(0); // Attempting to take logarithm of zero
+        System.out.println("Result: " + result);
+    }
+
+    static void calculateTangent() throws ArithmeticException {
+        double result = Math.tan(Math.PI / 2); // Attempting to calculate tangent of 90 degrees
+        System.out.println("Result: " + result);
+    }
+
+    static void calculatePower() throws ArithmeticException {
+        double result = Math.pow(0, 0); // Attempting to calculate zero raised to the power of zero
+        System.out.println("Result: " + result);
+    }
+
+    public static void main(String[] args) {
+        try {
+            divideByZero();
+        } catch (ArithmeticException e) {
+            System.out.println("Arithmetic Exception (Divided by Zero): " + e.getMessage());
+        }
+
+        try {
+            calculateLogarithm();
+        } catch (ArithmeticException e) {
+            System.out.println("Arithmetic Exception (Logarithm of negative or Zero): " + e.getMessage());
+        }
+
+        try {
+            calculateTangent();
+        } catch (ArithmeticException e) {
+            System.out.println("Arithmetic Exception (Tan 90 Degree): " + e.getMessage());
+        }
+
+        try {
+            calculatePower();
+        } catch (ArithmeticException e) {
+            System.out.println("Arithmetic Exception (Zero power Zero): " + e.getMessage());
+        }
+    }
+}
