@@ -1,0 +1,32 @@
+// Superclass
+class Superclass {
+    static void display() {
+        System.out.println("Static method in superclass");
+    }
+}
+
+// Subclass
+class Subclass extends Superclass {
+    static void display() {
+        System.out.println("Static method in subclass");
+    }
+    
+    void callSuperclassDisplay() {
+        // Calling superclass method using super
+        super.display();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Calling static method of subclass
+        Subclass.display(); // Output: Static method in subclass
+        
+        // Calling static method of superclass
+        Superclass.display(); // Output: Static method in superclass
+        
+        // Creating object of subclass and calling method to call superclass method
+        Subclass obj = new Subclass();
+        obj.callSuperclassDisplay(); // Output: Static method in superclass
+    }
+}
