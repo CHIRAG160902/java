@@ -1,0 +1,21 @@
+public class LastWordLength {
+    public static int lengthOfLastWord(String s) {
+        // Remove trailing spaces
+        s = s.trim();
+
+        int length = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) != ' ') {
+                length++;
+            } else {
+                break; // Stop counting when a space is encountered
+            }
+        }
+        return length;
+    }
+
+    public static void main(String[] args) {
+        String s = "Hello World";
+        System.out.println("Length of last word: " + lengthOfLastWord(s)); // Output: 5
+    }
+}
