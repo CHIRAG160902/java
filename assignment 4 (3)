@@ -1,0 +1,33 @@
+public class SumOfNumbers {
+    public static int sum(int[] numbers) throws IllegalArgumentException {
+        // Check if the array is null or empty
+        if (numbers == null || numbers.length == 0) {
+            throw new IllegalArgumentException("Array is null or empty");
+        }
+        
+        int sum = 0;
+        for (int number : numbers) {
+            sum += number;
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        int[] array1 = {1, 2, 3, 4, 5};
+        int[] array2 = {}; // Empty array
+        int[] array3 = null; // Null array
+
+        try {
+            int sum1 = sum(array1);
+            System.out.println("Sum of array1: " + sum1);
+
+            int sum2 = sum(array2);
+            System.out.println("Sum of array2: " + sum2); // This line will not be executed
+
+            int sum3 = sum(array3); // This line will throw an exception
+            System.out.println("Sum of array3: " + sum3); // This line will not be executed
+        } catch (IllegalArgumentException e) {
+            System.out.println("Exception caught: " + e.getMessage());
+        }
+    }
+}
